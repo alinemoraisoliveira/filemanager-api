@@ -1,6 +1,6 @@
 describe('teamDetail', function() {
 	
-	beforeEach(module('pokemonApp'));
+	beforeEach(module('filemanagerApp'));
 	beforeEach(module('teamDetail'));
 	
 	describe('TeamDetailController', function() {

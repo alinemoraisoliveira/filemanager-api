@@ -1,5 +1,5 @@
 angular.
-module('pokemonApp').
+module('filemanagerApp').
 controller('indexCtrl', function ($scope, $rootScope, $http, $translate, $compile, DTOptionsBuilder) {
 
 	var _successTitle;

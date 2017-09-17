@@ -1,5 +1,5 @@
 angular.
-  module('pokemonApp').
+  module('filemanagerApp').
   config(['$locationProvider', '$routeProvider', '$translateProvider',
     function config($locationProvider, $routeProvider, $translateProvider) {
 	  
@@ -20,6 +20,9 @@ angular.
         }).
         when('/pokemons/:pokemonId', {
           template: '<pokemon-detail></pokemon-detail>'
+        }).
+        when('/files', {
+            template: '<file-list></file-list>'
         }).
         
         otherwise({redirectTo:'/'});

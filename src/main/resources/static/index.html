@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="pokemonApp">
+<html ng-app="filemanagerApp">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -130,6 +130,9 @@
 						<a ng-href="#!/teams">
 							<i class="fa fa-users"></i>	<span>{{'menu.team' | translate}}</span>
 						</a>
+						<a ng-href="#!/files">
+							<i class="fa fa-users"></i>	<span>{{'menu.file' | translate}}</span>
+						</a>
 					</li>
 				</ul>
 				<!-- /.sidebar-menu -->
@@ -251,6 +254,10 @@
 	<!-- pokemon-detail -->
  	<script src="app/pokemon-detail/pokemon-detail.module.js"></script>
 	<script src="app/pokemon-detail/pokemon-detail.component.js"></script> 
+	
+	<!-- file-list -->
+ 	<script src="app/file-list/file-list.module.js"></script>
+	<script src="app/file-list/file-list.component.js"></script>
 
 	<div data-ng-init="init();"></div>
 </body>

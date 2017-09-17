@@ -8,8 +8,8 @@ angular.
 			
 			self.dtInstance = {};
 
-			self.dtOptions = $rootScope.newDTOptionsBuilder($scope, $rootScope.config.urlServices + 'services/team');
-			
+			self.dtOptions = $rootScope.newDTOptionsBuilder($scope, 'http://localhost:8081/services/team');
+
 			self.dtColumns = [
 			    DTColumnBuilder.newColumn('name', $translate('team.name')).withClass('all'),
 			    

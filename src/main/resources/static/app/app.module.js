@@ -1,9 +1,10 @@
-var pokemonApp = angular.module('pokemonApp', [
+var filemanagerApp = angular.module('filemanagerApp', [
 	'ngRoute',
 	'pascalprecht.translate',
 	'ngTagsInput',
 	'home',
 	'teamList',
 	'teamDetail',
-	'pokemonDetail'
+	'pokemonDetail',
+	'fileList',
 ]);

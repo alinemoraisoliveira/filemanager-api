@@ -31,6 +31,9 @@ public class SecurityEndpoint {
 		mapConfig.put("urlPokeapi", envProperties.getUrlPokeapi());
 		
 		return Response.status(Status.OK).entity(mapConfig).build();
+		
+/*		String urlConnectApi = envProperties.getUrlServices();
+		return Response.status(Status.OK).entity(urlConnectApi).build();		*/
 	}
 
 }

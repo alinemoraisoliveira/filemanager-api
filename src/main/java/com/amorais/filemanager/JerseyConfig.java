@@ -6,6 +6,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import com.amorais.filemanager.service.FileEndpoint;
 import com.amorais.filemanager.service.PokemonEndpoint;
 import com.amorais.filemanager.service.SecurityEndpoint;
 import com.amorais.filemanager.service.TeamEndpoint;
@@ -19,10 +20,13 @@ public class JerseyConfig extends ResourceConfig {
 	private static final String RESOURCE_PACKAGE = "com.amorais.filemanager";
 
 	public JerseyConfig() {
-		register(PokemonEndpoint.class);
+		
 		register(SecurityEndpoint.class);
 		register(TeamEndpoint.class);
-
+		register(FileEndpoint.class);
+		register(PokemonEndpoint.class);
+		
+		
         // Swagger
         register(io.swagger.jaxrs.listing.ApiListingResource.class);
         register(io.swagger.jaxrs.listing.SwaggerSerializers.class);

@@ -1,7 +1,8 @@
 var translations_pt_br = {
   
   menu: {
-	  team: 'Time'
+	  team: 'Time',
+	  file: 'Arquivo'
   },
   
   common: {
@@ -27,6 +28,7 @@ var translations_pt_br = {
 	  pokemon: 'Pokemon',
 	  teams: 'Times',
 	  team: 'Time',
+	  files: 'Arquivos'
   },
   
   message: {
@@ -48,5 +50,14 @@ var translations_pt_br = {
   pokemon: {
 	  id: 'Código',
 	  name: 'Descrição'
+  },
+  
+  file: {
+	  name: 'Descrição',
+	  username: 'Usuário',
+	  status: 'Status',
+	  sendTime: 'Hora de Envio',
+	  chunksNumber: 'Número de partes',
+	  dateUpload: 'Data do Upload'
   }
 };
