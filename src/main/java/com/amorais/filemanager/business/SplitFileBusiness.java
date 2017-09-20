@@ -13,15 +13,15 @@ public class SplitFileBusiness {
 	private SplitFileRepository splitFileRepository;
 	
 	
-	public void save(Integer chunk, byte[] bytes, Long fileId) {
+	public void save(Integer chunkNumber, byte[] splitFile, long fileId) {
 		
-		SplitFile splitFile = new SplitFile();
+		SplitFile sf = new SplitFile();
         //TODO: splitFile.setName(filename + "." + subfile);
-		splitFile.setChunkNumber(chunk);
-		splitFile.setSplitFile(bytes);
-		splitFile.setFileId(fileId);
+		sf.setChunkNumber(chunkNumber);
+		sf.setSplitFile(splitFile);
+		sf.setFileId(fileId);
 		
-		splitFileRepository.save(splitFile);
+		splitFileRepository.save(sf);
 	}
 
 }

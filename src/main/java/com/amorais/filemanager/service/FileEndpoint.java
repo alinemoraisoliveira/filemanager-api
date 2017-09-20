@@ -60,7 +60,7 @@ public class FileEndpoint {
 	public void download() {
 		
 		//fileBusiness.download("C:\\Users\\Aline\\Desktop\\teste_arquivo_copy.txt");
-		fileBusiness.download(new Long(20));
+		fileBusiness.download(new Long(2));
 		
 	}
 

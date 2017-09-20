@@ -21,7 +21,7 @@ public class File implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	private Long id;
+	private long id;
 
 	@Column(name = "NAME", nullable = true)
 	private String name;
@@ -37,28 +37,28 @@ public class File implements Serializable {
 	@Column(name = "DATE_UPLOAD", nullable = true)
 	private Date dateUpload;
 	
-	@Column(name = "CHUNKS_NUMBER", nullable = true)
-	private Integer chunksNumber;
+	@Column(name = "CHUNK_COUNT", nullable = true)
+	private Integer chunkCount;
 	
 	
 	public File() {
 		super();
 	}
 
-	public File(Long id, String name, String username, String status, Date dateUpload, Integer chunksNumber) {
+	public File(long id, String name, String username, String status, Date dateUpload, Integer chunkCount) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.username = username;
 		this.status = status;
 		this.dateUpload = dateUpload;
-		this.chunksNumber = chunksNumber;
+		this.chunkCount = chunkCount;
 	}
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -85,10 +85,11 @@ public class File implements Serializable {
 	public void setDateUpload(Date dateUpload) {
 		this.dateUpload = dateUpload;
 	}
-	public Integer getChunksNumber() {
-		return chunksNumber;
+	public Integer getChunkCount() {
+		return chunkCount;
 	}
-	public void setChunksNumber(Integer chunksNumber) {
-		this.chunksNumber = chunksNumber;
+	public void setChunkCount(Integer chunkCount) {
+		this.chunkCount = chunkCount;
 	}
+	
 }

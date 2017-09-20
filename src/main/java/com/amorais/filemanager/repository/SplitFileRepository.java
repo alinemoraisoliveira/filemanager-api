@@ -9,6 +9,6 @@ import com.amorais.filemanager.domain.SplitFile;
 
 public interface SplitFileRepository extends PagingAndSortingRepository<SplitFile, Long>, JpaSpecificationExecutor<SplitFile> {
 	
-	List<SplitFile> findByFileId(Long fileId);
+	List<SplitFile> findByFileId(long fileId);
 	
 }

@@ -39,39 +39,39 @@ public class FileBusiness {
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(filename));
 			
 			java.io.File f = new java.io.File(filename);
-			long sizeFile = f.length();
-			
-			Long chunksNumber = sizeFile / FileManagerConstants.CHUNK_SIZE;
+			long fileSize = f.length();
+					
+			Long chunkCount = Math.round(new Double(fileSize) / new Double(FileManagerConstants.CHUNK_SIZE));
  
 			file = save(filename, 
-						chunksNumber.intValue(), 
+						chunkCount.intValue(), 
 						FileManagerConstants.STATUS_UPLOAD.PROGRESS.toString(), 
 						user);
 			
 			
-			int chunk;
-			for(chunk = 0; chunk < chunksNumber.intValue(); chunk++) {
+			int chunkNumber;
+			for(chunkNumber = 0; chunkNumber < fileSize / FileManagerConstants.CHUNK_SIZE; chunkNumber++) {
 	
-				byte[] bytes = new byte[FileManagerConstants.CHUNK_SIZE];
+				byte[] splitFile = new byte[FileManagerConstants.CHUNK_SIZE];
 				
-				// TODO: Escreve a quantidade certa de bytes
+				// loads byte to byte
 				for (int currentByte = 0; currentByte < FileManagerConstants.CHUNK_SIZE; currentByte++){
-					// TODO: Carrega um byte do arquivo de entrada e escrevê-lo para o arquivo de saída
-					bytes[currentByte] = (byte) in.read();
+					splitFile[currentByte] = (byte) in.read();
 				}
 				
-				splitFileBusiness.save(chunk, bytes, file.getId());
+				splitFileBusiness.save(chunkNumber, splitFile, file.getId());
 			}
 
-			if (sizeFile != FileManagerConstants.CHUNK_SIZE * (chunk - 1)){
+			if (fileSize != FileManagerConstants.CHUNK_SIZE * (chunkNumber - 1)){
 				
-				byte[] bytes = new byte[FileManagerConstants.CHUNK_SIZE];
+				byte[] splitFile = new byte[FileManagerConstants.CHUNK_SIZE];
 				
-				// TODO: Escreve a quantidade certa de bytes
-				for (int currentByte = 0; currentByte < FileManagerConstants.CHUNK_SIZE; currentByte++){
-					// TODO: Carrega um byte do arquivo de entrada e escrevê-lo para o arquivo de saída
-					bytes[currentByte] = (byte) in.read();
+				// loads byte to byte
+				for(int currentByte = 0; currentByte < FileManagerConstants.CHUNK_SIZE; currentByte++){
+					splitFile[currentByte] = (byte) in.read();
 				}
+				
+				splitFileBusiness.save(chunkNumber, splitFile, file.getId());
 				
 				// TODO: 
 				//byte[] bytes2 = new byte[FileManagerConstants.CHUNK_SIZE];
@@ -88,16 +88,12 @@ public class FileBusiness {
 				int b;
 				while ((b = in.read()) != -1)
 					out.write(b);*/
-
-				splitFileBusiness.save(chunk, bytes, file.getId());
 			}
 			
 			// close the file
 			in.close();
-			
-			file = fileRepository.findOne(file.getId());
-			file.setStatus(FileManagerConstants.STATUS_UPLOAD.COMPLETED.toString());
-			fileRepository.save(file);
+						
+			statusUpdate(file.getId(), FileManagerConstants.STATUS_UPLOAD.COMPLETED.toString());
 
 		} catch(FileNotFoundException e){
 			statusUpdate(file.getId(), FileManagerConstants.STATUS_UPLOAD.FAILURE.toString());
@@ -107,18 +103,18 @@ public class FileBusiness {
 		}
 	}
 	
-	public void download(Long fileId) {
+	public void download(long fileId) {
 		
 		try {
 			List<SplitFile> files = splitFileRepository.findByFileId(fileId);
 			
-			byte [] bytes = null;
-			for(SplitFile file : files) {
-				bytes = file.getSplitFile();
+			byte[] file = null;
+			for(SplitFile f : files) {
+				file = f.getSplitFile();
 			}
 
 			BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("C:\\Users\\Aline\\Desktop\\teste_arquivo_copy.txt"));
-			out.write(bytes);
+			out.write(file);
 			out.close();
 			
 		} catch (IOException e) {
@@ -126,19 +122,19 @@ public class FileBusiness {
 		}
 	}
 	
-	public void statusUpdate(Long fileId, String status) {
+	public void statusUpdate(long fileId, String status) {
 
 		File file = fileRepository.findOne(fileId);
 		file.setStatus(status);
 		fileRepository.save(file);
 	}
 			 
-	public File save(String filename, Integer chunksNumber, String status, String user) {
+	public File save(String filename, Integer chunkCount, String status, String user) {
 		
 		File file = new File();
 		file.setDateUpload(new Date());
 		file.setName(filename);
-		file.setChunksNumber(chunksNumber);
+		file.setChunkCount(chunkCount);
 		file.setStatus(status);
 		file.setUsername(user);
 		fileRepository.save(file);
