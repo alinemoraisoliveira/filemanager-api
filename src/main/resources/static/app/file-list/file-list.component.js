@@ -11,12 +11,12 @@ angular.
 			self.dtOptions = $rootScope.newDTOptionsBuilder($scope, 'http://localhost:8081/services/file');
 
 			self.dtColumns = [
-			    DTColumnBuilder.newColumn('name', $translate('file.name')).withClass('all'),
-			    DTColumnBuilder.newColumn('username', $translate('file.username')).withClass('all'),
-			    DTColumnBuilder.newColumn('dateUpload', $translate('file.dateUpload')).withClass('all'),
-			    DTColumnBuilder.newColumn('sendTime', $translate('file.sendTime')).withClass('all'),
-			    DTColumnBuilder.newColumn('chunksNumber', $translate('file.chunksNumber')).withClass('all'),
-			    DTColumnBuilder.newColumn('status', $translate('file.status')).withClass('all'),
+			    DTColumnBuilder.newColumn('name', $translate('file.name')),
+			    DTColumnBuilder.newColumn('username', $translate('file.username')),
+			    DTColumnBuilder.newColumn('dateUpload', $translate('file.dateUpload')),
+			    
+			    DTColumnBuilder.newColumn('chunksNumber', $translate('file.chunksNumber')),
+			    DTColumnBuilder.newColumn('status', $translate('file.status')),
 			    
 			    DTColumnBuilder.newColumn(null, $translate('common.actions')).notSortable().renderWith(function(data, type, full, meta) {
 			    	var ret = '<div class="text-nowrap">';
@@ -30,12 +30,12 @@ angular.
 /*			
 			$scope.alterTeam = function(date) {
 				$scope.team = date;
-			};
+			};*/
 
 			$scope.refresh = function() {
 		        self.dtInstance.rerender();
 			};
-
+			/*
 			$scope.deleteTeam = function(id) {
 				if(confirm($translate.instant('common.deleteConfirm'))) {
 					$http.post('services/team/delete/' + id).then(function(response) {

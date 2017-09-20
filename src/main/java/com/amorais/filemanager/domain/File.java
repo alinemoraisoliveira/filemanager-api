@@ -1,13 +1,18 @@
 package com.amorais.filemanager.domain;
 
 import java.io.Serializable;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.amorais.filemanager.util.FileManagerConstants;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "FILE")
@@ -26,31 +31,28 @@ public class File implements Serializable {
 	
 	@Column(name = "STATUS", nullable = true)
 	private String status;
-	
-	@Column(name = "SEND_TIME", nullable = true)
-	private Long sendTime;
+
+	@JsonFormat(pattern = FileManagerConstants.DATETIME_PATTERN, locale = FileManagerConstants.JSON_DEFAULT_LOCALE, timezone = FileManagerConstants.JSON_DEFAULT_TIMEZONE)
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATE_UPLOAD", nullable = true)
+	private Date dateUpload;
 	
 	@Column(name = "CHUNKS_NUMBER", nullable = true)
-	private long chunksNumber;
+	private Integer chunksNumber;
 	
-	@Column(name = "DATE_UPLOAD", nullable = true)
-	private GregorianCalendar dateUpload;
-
 	
 	public File() {
 		super();
 	}
-	
-	public File(Long id, String name, String username, String status, Long sendTime, long chunksNumber,
-			GregorianCalendar dateUpload) {
+
+	public File(Long id, String name, String username, String status, Date dateUpload, Integer chunksNumber) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.username = username;
 		this.status = status;
-		this.sendTime = sendTime;
-		this.chunksNumber = chunksNumber;
 		this.dateUpload = dateUpload;
+		this.chunksNumber = chunksNumber;
 	}
 
 	public Long getId() {
@@ -77,23 +79,16 @@ public class File implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Long getSendTime() {
-		return sendTime;
-	}
-	public void setSendTime(Long sendTime) {
-		this.sendTime = sendTime;
-	}
-	public long getChunksNumber() {
-		return chunksNumber;
-	}
-	public void setChunksNumber(long chunksNumber) {
-		this.chunksNumber = chunksNumber;
-	}
-	public GregorianCalendar getDateUpload() {
+	public Date getDateUpload() {
 		return dateUpload;
 	}
-	public void setDateUpload(GregorianCalendar dateUpload) {
+	public void setDateUpload(Date dateUpload) {
 		this.dateUpload = dateUpload;
 	}
-
+	public Integer getChunksNumber() {
+		return chunksNumber;
+	}
+	public void setChunksNumber(Integer chunksNumber) {
+		this.chunksNumber = chunksNumber;
+	}
 }

@@ -8,8 +8,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "SPLIT_FILE")
@@ -24,7 +27,13 @@ public class SplitFile implements Serializable {
 	private int chunkNumber;
 
 	@Column(name = "ARQUIVO", nullable = true)
+	@Lob
 	private byte[] splitFile;
+	
+
+/*	@Column( name = "FILEIMAGE" )
+	@Lob(type = LobType.BLOB)
+	private byte[] fileimage;*/
 
 	@Column(name = "FILE_ID", nullable = true)
 	private Long fileId;
@@ -32,7 +41,7 @@ public class SplitFile implements Serializable {
 	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	@JoinColumn(name="FILE_ID", referencedColumnName="ID", nullable = false, updatable = false, insertable = false)
 	private File file;
-
+	
 	public SplitFile() {
 		super();
 	}

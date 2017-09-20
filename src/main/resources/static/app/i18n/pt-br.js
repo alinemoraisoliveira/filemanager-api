@@ -15,7 +15,8 @@ var translations_pt_br = {
       save: 'Salvar',
       reloadData: 'Atualizar dados',
       insert: 'Incluir',
-      deleteConfirm: 'Confirma exclusão?'
+      deleteConfirm: 'Confirma exclusão?',
+      upload: 'Upload',
   },
   
   title: {
@@ -53,7 +54,7 @@ var translations_pt_br = {
   },
   
   file: {
-	  name: 'Descrição',
+	  name: 'Nome Arquivo',
 	  username: 'Usuário',
 	  status: 'Status',
 	  sendTime: 'Hora de Envio',
