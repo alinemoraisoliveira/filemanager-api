@@ -1,10 +1,8 @@
 package com.amorais.filemanager.business;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -104,24 +102,14 @@ public class FileBusiness {
 	}
 	
 	public byte[] download(long fileId) {
-		
+
+		List<SplitFile> files = splitFileRepository.findByFileId(fileId);
+			
 		byte[] file = null;
-		
-		try {
-			List<SplitFile> files = splitFileRepository.findByFileId(fileId);
-
-			for(SplitFile f : files) {
-				file = f.getSplitFile();
-			}
-
-			BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("C:\\Users\\Aline\\Desktop\\teste_arquivo_copy.txt"));
-			out.write(file);
-			out.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
+		for(SplitFile f : files) {
+			file = f.getSplitFile();
 		}
-		
+
 		return file;
 	}
 	

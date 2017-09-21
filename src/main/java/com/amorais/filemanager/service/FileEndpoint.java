@@ -62,8 +62,10 @@ public class FileEndpoint {
 	public Response download(@ApiParam(value = "file id", required = true) @PathParam("fileId") long fileId) {
 		
 		byte[] file = fileBusiness.download(fileId);
-
-        return Response.ok(file).build();
+		
+		return Response.ok(file, MediaType.APPLICATION_OCTET_STREAM)
+			.header("Content-Disposition", "attachment; filename=teste.txt" )
+			.build();
 	}
 
 }

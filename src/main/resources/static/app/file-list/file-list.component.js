@@ -38,10 +38,21 @@ angular.
 			};
 			
 			$scope.download = function(fileId) {
+
 				$http.get('http://localhost:8081/services/file/download/' + fileId).then(function(response) {
-					console.log("voltou js");
 					
+				    var blob = new Blob([response.data], {type:'text/html'});
+				    var blobURL = (window.URL || window.webkitURL).createObjectURL(blob);
+
+				    var contentDispositionHeader = response.headers('Content-Disposition');
+				    var filename = contentDispositionHeader.split(';')[1].trim().split('=')[1];
+
+				    var a = document.createElement("a");
+				    a.download = filename;
+				    a.href = blobURL;
+				    a.click();
 				});
 			};
+			
 		}		  
 	});
