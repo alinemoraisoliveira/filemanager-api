@@ -3,6 +3,7 @@ package com.amorais.filemanager.service;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -17,6 +18,7 @@ import com.amorais.filemanager.util.JsonUtil;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -53,15 +55,15 @@ public class FileEndpoint {
 	}
 	
 	@GET
-	@Path("/download")
+	@Path("/download/{fileId}")
 	@ApiOperation(value = "Realizar o download de arquivos")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "OK"), @ApiResponse(code = 404, message = "Not Found") })
-	public void download() {
+	public Response download(@ApiParam(value = "file id", required = true) @PathParam("fileId") long fileId) {
 		
-		//fileBusiness.download("C:\\Users\\Aline\\Desktop\\teste_arquivo_copy.txt");
-		fileBusiness.download(new Long(2));
-		
+		byte[] file = fileBusiness.download(fileId);
+
+        return Response.ok(file).build();
 	}
 
 }

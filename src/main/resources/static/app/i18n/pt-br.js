@@ -58,7 +58,7 @@ var translations_pt_br = {
 	  username: 'Usuário',
 	  status: 'Status',
 	  sendTime: 'Hora de Envio',
-	  chunksNumber: 'Número de partes',
+	  chunkCount: 'Número de partes',
 	  dateUpload: 'Data do Upload'
   }
 };

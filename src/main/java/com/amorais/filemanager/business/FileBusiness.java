@@ -103,12 +103,13 @@ public class FileBusiness {
 		}
 	}
 	
-	public void download(long fileId) {
+	public byte[] download(long fileId) {
+		
+		byte[] file = null;
 		
 		try {
 			List<SplitFile> files = splitFileRepository.findByFileId(fileId);
-			
-			byte[] file = null;
+
 			for(SplitFile f : files) {
 				file = f.getSplitFile();
 			}
@@ -116,10 +117,12 @@ public class FileBusiness {
 			BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream("C:\\Users\\Aline\\Desktop\\teste_arquivo_copy.txt"));
 			out.write(file);
 			out.close();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return file;
 	}
 	
 	public void statusUpdate(long fileId, String status) {

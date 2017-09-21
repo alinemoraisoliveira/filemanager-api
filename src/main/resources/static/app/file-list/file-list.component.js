@@ -15,11 +15,12 @@ angular.
 			    DTColumnBuilder.newColumn('username', $translate('file.username')),
 			    DTColumnBuilder.newColumn('dateUpload', $translate('file.dateUpload')),
 			    
-			    DTColumnBuilder.newColumn('chunksNumber', $translate('file.chunksNumber')),
+			    DTColumnBuilder.newColumn('chunkCount', $translate('file.chunkCount')),
 			    DTColumnBuilder.newColumn('status', $translate('file.status')),
 			    
 			    DTColumnBuilder.newColumn(null, $translate('common.actions')).notSortable().renderWith(function(data, type, full, meta) {
 			    	var ret = '<div class="text-nowrap">';
+			    	ret += '<a href="javascript:;" ng-click="download(' + data.id + ');"><button class="btn btn-primary" type="button"><i class="fa fa-download"></i></button></a>&nbsp;';
 			    	/*ret += '<a ng-href="#!/teams/' + data.id + '"><button class="btn btn-primary" type="button"><i class="fa fa-pencil"></i></button></a>&nbsp;';
                 	ret += '<a href="javascript:;" ng-click="deleteTeam(' + data.id + ');"><button class="btn btn-danger" type="button"><i class="fa fa-times"></i></button></a>&nbsp;';*/
                 	ret += '</div>';
@@ -35,20 +36,12 @@ angular.
 			$scope.refresh = function() {
 		        self.dtInstance.rerender();
 			};
-			/*
-			$scope.deleteTeam = function(id) {
-				if(confirm($translate.instant('common.deleteConfirm'))) {
-					$http.post('services/team/delete/' + id).then(function(response) {
-						$rootScope.successMessage();
-						$scope.refresh();
-					}, function(response) {
-						if(response.data.exception.indexOf('DataIntegrityViolationException') >= 0) {
-							$rootScope.warningMessage('common.deleteConstraint');
-						} else {
-							$rootScope.errorMessage(response);	
-						}
-					});
-				}
-			};*/
+			
+			$scope.download = function(fileId) {
+				$http.get('http://localhost:8081/services/file/download/' + fileId).then(function(response) {
+					console.log("voltou js");
+					
+				});
+			};
 		}		  
 	});
