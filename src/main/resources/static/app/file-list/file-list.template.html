@@ -11,7 +11,7 @@
 			        <button ng-click="refresh();" type="button" class="btn btn-primary">
 			            <i class="fa fa-refresh"></i>&nbsp;{{'common.reloadData' | translate}}
 			        </button>
-			        <button ng-click="upload();" type="button" class="btn btn-primary">
+			        <button ng-click="openDialogUpload();" type="button" class="btn btn-primary">
 			        	<i class="fa fa-upload"></i> {{'common.upload' | translate}}
 			        </button>
 			     </div>
@@ -24,5 +24,44 @@
 		    	</table>
 		    </div>
 	    </div>
+	</div>
+</div>
+
+<div class="modal modal-default animated fadeIn" id="uploadDialog" role="dialog">
+	<div class="modal-dialog" role="document">
+		<form name="uploadForm" method="POST" ng-submit="upload()" enctype = "multipart/form-data"><!-- ng-submit="upload()"  -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">{{'title.upload' | translate}}</h4>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-12 col-md-12">
+					 	<div id="div_upload_mensagem" class="callout callout-warning" style="display:none">
+							<button type='button' class='close' aria-hidden='true' onClick="app.fadeOut('div_upload_mensagem');" >&times;</button>
+	                         <p><label id="upload_mensagem" class="text"></label></p>
+	                    </div>
+	                </div>
+	            </div>
+
+				<div class="modal-body">				
+					<div class="row">
+						<div class="col-sm-12 col-md-12">
+							<div class="form-group">
+				    			<div data-dojo-type="dojox/form/uploader/FileList" id="uploadForm_arquivo_list" data-dojo-props="uploaderId:'uploadForm_arquivo'"></div>
+								<input type="file" id="uploadForm_arquivo" data-dojo-type="dojox/form/Uploader" data-dojo-props="name:'arquivo', multiple:false, label:'Selecionar Arquivo', uploadOnSelect:false, 'class':'primary'" />            
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">{{'common.close' | translate}}</button>
+					<button type="button" class="btn btn-primary" ng-click="upload();">{{'common.upload' | translate}}</button>
+				</div>
+			</div>
+		</form>
+
 	</div>
 </div>

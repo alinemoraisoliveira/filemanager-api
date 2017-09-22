@@ -16,15 +16,15 @@ var translations_pt_br = {
       reloadData: 'Atualizar dados',
       insert: 'Incluir',
       deleteConfirm: 'Confirma exclusão?',
-      upload: 'Upload',
+      upload: 'Upload'
   },
   
   title: {
-	  app: 'Pokemon Services',
 	  home: 'Home',
 	  successMessage: 'Sucesso',
 	  infoMessage: 'Informação',
 	  errorMessage: 'Erro',
+	  upload: 'Selecione o arquivo para carregar',
 	  pokemons: 'Pokemons',
 	  pokemon: 'Pokemon',
 	  teams: 'Times',

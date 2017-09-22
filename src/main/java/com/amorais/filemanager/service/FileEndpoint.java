@@ -2,6 +2,7 @@ package com.amorais.filemanager.service;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -43,7 +44,7 @@ public class FileEndpoint {
 		return Response.status(Status.OK.getStatusCode()).entity(json).build();
 	}
 	
-	@GET 
+	@POST
 	@Path("/upload")
 	@ApiOperation(value = "Realizar o upload de arquivos")
     @Consumes(MediaType.APPLICATION_JSON)
